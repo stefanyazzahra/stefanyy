@@ -4,15 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRUD Data Siswa</title>
+  <style>
+    /* Gaya tombol kembali */
+    .btn-kembali {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s;
+    }
+    .btn-kembali:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
   <h1>Data Siswa</h1>
 
-  <input type="text" id="nisInput" placeholder="Masukkan NIS">
-  <input type="text" id="namaInput" placeholder="Masukkan Nama Siswa">
-  <input type="text" id="kelasInput" placeholder="Masukkan Kelas">
-  <button id="addBtn">Tambah</button>
-  <a href="index.html" class="btn-kembali">⬅️ Kembali ke Halaman Awal</a>
+  <br><input type="text" id="nisInput" placeholder="Masukkan NIS"></br>
+  <br><input type="text" id="namaInput" placeholder="Masukkan Nama Siswa"><br>
+  <br><input type="text" id="kelasInput" placeholder="Masukkan Kelas"></br>
+  <br><button id="addBtn">Tambah</button></br>
 
   <br><br>
 
@@ -29,7 +45,10 @@
     <tbody id="siswaTable"></tbody>
   </table>
 
-  <!-- Taruh kode JavaScript di sini -->
+  <!-- Tombol kembali ke halaman awal -->
+  <a href="index.html" class="btn-kembali">⬅️ Kembali ke Halaman Awal</a>
+
+  <!-- Script JavaScript -->
   <script>
     let siswa = [];
 
