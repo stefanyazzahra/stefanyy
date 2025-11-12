@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Data Siswa</title>
+</head>
+<body>
+  <h1>Data Siswa</h1>
+
+  <br><input type="text" id="nisInput" placeholder="Masukkan NIS"></br>
+  <br><input type="text" id="namaInput" placeholder="Masukkan Nama Siswa"><br>
+  <br><input type="text" id="kelasInput" placeholder="Masukkan Kelas"></br>
+  <br><button id="addBtn">Tambah</button></br>
+
+  <br><br>
+
+  <table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>NIS</th>
+        <th>Nama Siswa</th>
+       <th>Kelas</th>
+       <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody id="siswaTable"></tbody>
+  </table>
+
+  <!-- Taruh kode JavaScript di sini -->
+  <script>
+    let siswa = [];
+
+    const nisInput = document.getElementById("nisInput");
+    const namaInput = document.getElementById("namaInput");
+    const kelasInput = document.getElementById("kelasInput");
+    const addBtn = document.getElementById("addBtn");
+    const siswaTable = document.getElementById("siswaTable");
+
+    addBtn.addEventListener("click", tambahSiswa);
+
+    function renderSiswa() {
+      siswaTable.innerHTML = "";
+      siswa.forEach((data, i) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${i + 1}</td>
+          <td>${data.nis}</td>
+          <td>${data.nama}</td>
+          <td>${data.kelas}</td>
+          <td>
+            <button onclick="editSiswa(${i})">Edit</button>
+            <button onclick="hapusSiswa(${i})">Hapus</button>
+          </td>
+        `;
+        siswaTable.appendChild(row);
+      });
+    }
+
+    function tambahSiswa() {
+      const nis = nisInput.value.trim();
+      const nama = namaInput.value.trim();
+      const kelas = kelasInput.value.trim();
+
+      if (nis && nama && kelas) {
+        siswa.push({ nis, nama, kelas });
+        nisInput.value = "";
+        namaInput.value = "";
+        kelasInput.value = "";
+        renderSiswa();
+      } else {
+        alert("Semua kolom harus diisi!");
+      }
+    }
+
+    function editSiswa(i) {
+      const data = siswa[i];
+      const nisBaru = prompt("Edit NIS:", data.nis);
+      const namaBaru = prompt("Edit Nama Siswa:", data.nama);
+      const kelasBaru = prompt("Edit Kelas:", data.kelas);
+
+      if (nisBaru && namaBaru && kelasBaru) {
+        siswa[i] = { nis: nisBaru, nama: namaBaru, kelas: kelasBaru };
+        renderSiswa();
+      } else {
+        alert("Semua data harus diisi!");
+      }
+    }
+
+    function hapusSiswa(i) {
+      siswa.splice(i, 1);
+      renderSiswa();
+    }
+  </script>
+</body>
+</html>
